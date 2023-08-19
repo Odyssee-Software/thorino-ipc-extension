@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ES6",
+    "declaration": true,
+    "sourceMap": true,
+    "removeComments": false,
+    "preserveConstEnums" : true,
+    "skipLibCheck": true,
+    "moduleResolution":"node",
+    "strict": true,
+    "noImplicitAny": false,
+    "outDir": "./dist",
+    "esModuleInterop":true,
+  }
+}
