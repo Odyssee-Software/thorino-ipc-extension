@@ -28,7 +28,7 @@ La fonction `Dispatcher` permet de créer une fonction de déclenchement d'évé
 import { Dispatcher } from '@thorino/ipc';
 
 const myExtensionDispatcher = Dispatcher('myExtension');
-myExtensionDispatcher<Response>('myEvent', 'Hello from frontend!')
+myExtensionDispatcher<MyResponseType>('myEvent', 'Hello from frontend!')
 .then(responseEvent => {
   // Gérer la réponse de l'extension
 })
