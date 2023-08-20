@@ -2,6 +2,9 @@
 
 Le module `@thorino/ipc` facilite l'interaction entre le backend et le frontend dans le contexte d'une application créée avec le framework Thorium et NeutralinoJS. Il exploite la fonctionnalité de démarrage de processus en parallèle de Neutralino pour exécuter des extensions (écrites en différentes langues telles que C++, Python, Node.js, etc.) afin d'inclure des modules backend dans l'application. Le module simplifie notamment la mise en place d'un serveur WebSocket natif de Neutralino pour établir une communication bidirectionnelle entre le backend et le frontend.
 
+> Vous pouvez également démarrer rapidement un projet avec Thorium et Neutralino en utilisant le [starter pack Thorino](https://github.com/Odyssee-Software/thorino-starter). 
+> Pour une expérience encore plus fluide, vous pouvez utiliser le [client thorium-cli](https://github.com/Odyssee-Software/thorium-cli) pour créer et configurer des projets, ajouter des extensions et générer des squelettes de code dans le langage de votre choix.
+
 Créé avec ❤️ par l'équipe du framework Thorium.
 
 ## Fonctionnalités
