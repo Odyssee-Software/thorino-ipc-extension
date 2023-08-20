@@ -8,9 +8,10 @@ import {
   TExtensionEvents
 } from './types';
 
-/** The ExtensionSocket class is a TypeScript class that extends the w3cwebsocket class and provides a
-convenient way to create a WebSocket connection to a specified hostname and port, with an extension
-ID and token. */
+import { Dispatch } from './dispatch';
+
+/** La classe ExtensionSocket simplifie la création et la gestion d'une connexion WebSocket entre le backend et le frontend
+ * en utilisant la fonctionnalité native de Neutralino. */
 export class ExtensionSocket extends w3cwebsocket{
 
   port:number;
@@ -28,22 +29,22 @@ export class ExtensionSocket extends w3cwebsocket{
     this.extensionId = options.extensionId;
   }
 
-  /** The line `log = (message) => { log( this.extensionId , message ); }` is defining a method called
-  `log` within the `ExtensionSocket` class. This method takes a `message` parameter and calls the
-  `log` function from the `log` module, passing in the `extensionId` property of the
-  `ExtensionSocket` instance and the `message` parameter. This allows the `ExtensionSocket` class to
-  log messages using the `log` function with the appropriate extension ID. */
+  /** La ligne `log = (message) => { log( this.extensionId , message ); }` définit une méthode appelée
+   * `log` à l'intérieur de la classe `ExtensionSocket`. Cette méthode prend un paramètre `message` et appelle
+   * la fonction `log` du module `log`, en passant la propriété `extensionId` de l'instance `ExtensionSocket`
+   * et le paramètre `message`. Cela permet à la classe `ExtensionSocket` de journaliser des messages en utilisant
+   * la fonction `log` avec l'ID d'extension approprié. */
   log = (message) => { log( this.extensionId , message ); }
 
 }
 
 /**
- * The above function is a TypeScript code that exports a function called "Extension" which creates a
- * WebSocket client and handles various events based on the provided events object.
- * @param {TExtensionEvents} events - The `events` parameter is an object that contains event names as
- * keys and event handler functions as values. These event handler functions will be called when the
- * corresponding event occurs.
- * @returns an object with the following properties:
+ * La fonction Extension facilite la communication entre le backend et le frontend en utilisant des extensions exécutées
+ * en parallèle par Neutralino. Elle met en place un serveur WebSocket natif pour établir une interaction bidirectionnelle
+ * entre les deux parties. Cette fonctionnalité simplifie considérablement le processus en évitant la gestion manuelle
+ * des écouteurs pour les réponses d'appels depuis le frontend, réduisant ainsi la complexité du code.
+ * @param {TExtensionEvents} events - Les fonctions de gestion d'événements pour les interactions frontend-backend.
+ * @returns Un objet contenant les paramètres de configuration et le client WebSocket.
  */
 export const Extension = ( events:TExtensionEvents ):IExtension|null => {
 
@@ -68,36 +69,39 @@ export const Extension = ( events:TExtensionEvents ):IExtension|null => {
     client.onmessage = (e) => {
 
       const { event, data } = JSON.parse(e.data as string);
+
+      client.log( 'message incoming' );
   
       if(eventsKey.includes( event )){
 
         let response = {
           send : ( message ) => {
 
-            client.send(JSON.stringify({
+            return client.send( JSON.stringify({
               id: uuidv4(),
               method: "app.broadcast",
               accessToken: TOKEN,
               data: { event: data.chanel, data : message },
-            }))
+            }) );
 
           }
         }
-
+        console.log(events);
         events[event]( data , response );
       }
   
     };
   
     return {
-      port : PORT,
-      token : TOKEN,
-      extensionId : EXTENSIONID,
+      get port(){ return client.port },
+      get token(){ return client.token },
+      get extensionId(){ return client.extensionId },
       client,
       log : (message, type = "INFO") => {
         return log( EXTENSIONID , message , type );
       }
     }
+
   }
   catch(error){
     return null;

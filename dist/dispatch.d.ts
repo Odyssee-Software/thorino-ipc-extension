@@ -1,12 +1,13 @@
 /**
- * The Dispatch function is a TypeScript function that sends a request to an extension with a specified
- * name and event, and returns a Promise that resolves with the response data.
- * @param {string} extensionName - The `extensionName` parameter is a string that represents the name
- * of the extension you want to dispatch the event to.
- * @param {string} event - The `event` parameter is a string that represents the name of the event that
- * you want to dispatch. It is used to identify the specific event that you want to trigger.
- * @param {any} data - The `data` parameter is an object that contains the data to be sent along with
- * the event. It can be of any type.
- * @returns a Promise that resolves to a CustomEvent of type IResponseData.
-*/
+ * La fonction Dispatch simplifie l'envoi d'événements depuis le frontend vers les extensions du backend,
+ * en utilisant la fonctionnalité de démarrage de processus en parallèle de Neutralino. Elle permet de déclencher
+ * des extensions écrites dans différentes langues (C++, Python, Node.js, etc.) pour inclure des modules backend
+ * dans l'application. Cette fonctionnalité est basée sur un serveur WebSocket natif de Neutralino, qui facilite
+ * la communication bidirectionnelle entre le backend et le frontend. Elle élimine la nécessité de gérer manuellement
+ * les écouteurs pour les réponses d'appels depuis le frontend, contribuant ainsi à réduire la complexité du code.
+ * @param {string} extensionName - Le nom de l'extension cible.
+ * @param {string} event - Le nom de l'événement à déclencher.
+ * @param {any} data - Les données à envoyer avec l'événement.
+ * @returns Une Promesse résolvant en un CustomEvent de type IResponseData contenant la réponse de l'extension.
+ */
 export declare const Dispatch: <IResponseData>(extensionName: string, event: string, data: any) => Promise<CustomEvent<IResponseData>>;

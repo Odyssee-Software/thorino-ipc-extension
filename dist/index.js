@@ -16,27 +16,6 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./extension"), exports);
 __exportStar(require("./dispatch"), exports);
+__exportStar(require("./dispatcher"), exports);
 __exportStar(require("./types"), exports);
-// const extensionEvents:TExtensionEvents = {
-//   ping : ( data , client , token) => {
-//     client.send(JSON.stringify({
-//       id: uuidv4(),
-//       method: "app.broadcast",
-//       accessToken: token,
-//       data: { event: "pong", data: "Pong return !" },
-//     }))
-//   },
-//   eventToExtension : ( data , client , token) => {
-//     client.send(JSON.stringify({
-//       id: uuidv4(),
-//       method: "app.broadcast",
-//       accessToken: token,
-//       data: { event: "eventFromExtension", data: "Hello app!" },
-//     }))
-//   },
-//   getString : ( data , client , token ) => {
-//     console.log('COUCOU');
-//   }
-// };
-// const extension = Extension( extensionEvents );
 //# sourceMappingURL=index.js.map

@@ -2,10 +2,16 @@
   "name": "@thorino/ipc",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@neutralinojs/lib": "^3.11.0",
+    "@types/websocket": "^1.0.5",
+    "chalk": "^4.1.2",
+    "minimist": "^1.2.8"
+  }
 }
