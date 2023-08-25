@@ -12,7 +12,7 @@ import { v4 as uuidv4 } from 'uuid';
  * @param {any} data - Les données à envoyer avec l'événement.
  * @returns Une Promesse résolvant en un CustomEvent de type IResponseData contenant la réponse de l'extension.
  */
-export const Dispatch = <IResponseData>( extensionName:string , event:string , data:any ):Promise<CustomEvent<IResponseData>> => {
+export const Dispatch = <IResponseData>( extensionName:string , event:string|Record<string,any> , data:any ):Promise<CustomEvent<IResponseData>> => {
 
   const { extensions , events } = window['Neutralino'];
 

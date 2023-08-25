@@ -9,7 +9,7 @@ import { Dispatch } from "./dispatch"
 */
 export const Dispatcher = (extensionName:string) => {
 
-  return <response>( event:string , message:string ) => {
+  return <response>( event:string , message:string|Record<string,any> ) => {
     // Utilisation de la fonction Dispatch en préconfigurant le nom de l'extension
     return Dispatch<response>( extensionName , event , message );
   }

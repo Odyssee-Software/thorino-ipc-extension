@@ -10,4 +10,4 @@
  * @param {any} data - Les données à envoyer avec l'événement.
  * @returns Une Promesse résolvant en un CustomEvent de type IResponseData contenant la réponse de l'extension.
  */
-export declare const Dispatch: <IResponseData>(extensionName: string, event: string, data: any) => Promise<CustomEvent<IResponseData>>;
+export declare const Dispatch: <IResponseData>(extensionName: string, event: string | Record<string, any>, data: any) => Promise<CustomEvent<IResponseData>>;

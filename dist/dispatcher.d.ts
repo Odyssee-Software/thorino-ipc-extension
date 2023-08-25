@@ -5,4 +5,4 @@
  * @param {string} extensionName - Le nom de l'extension cible.
  * @returns Une fonction qui facilite l'envoi d'événements personnalisés à l'extension spécifiée.
 */
-export declare const Dispatcher: (extensionName: string) => <response>(event: string, message: string) => Promise<CustomEvent<response>>;
+export declare const Dispatcher: (extensionName: string) => <response>(event: string, message: string | Record<string, any>) => Promise<CustomEvent<response>>;
